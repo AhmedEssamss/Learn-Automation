@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../Pages/loginpage';
+import jsonData from '../../test-data/UserData.json';
 
-
-
+// Parse the JSON data into a JavaScript object
+const parseData = JSON.parse(JSON.stringify(jsonData));
 
 test.describe('Login page', () => {
 
@@ -15,12 +16,12 @@ test.beforeEach(async ({ page }) => {
     });
 
 test('valid login', async ({ page }) => {
-        await loginPage.login("Admin", "admin123");
+        await loginPage.login(parseData.username, parseData.password);
         await expect(loginPage.dashboardHeader).toBeVisible();
     });
 
 test('invalid login', async ({ page }) => {
-        await loginPage.login("Admin", "admin12");
+        await loginPage.login(parseData.username, "wrongpassword");
         await expect(loginPage.invalidloginmessage).toBeVisible();
     });
 
