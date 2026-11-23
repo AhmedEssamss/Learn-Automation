@@ -1,0 +1,3 @@
+Before all tests
+Before each test : valid login
+After each test : valid login

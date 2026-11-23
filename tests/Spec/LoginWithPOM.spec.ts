@@ -6,13 +6,26 @@ import paramData from '../../test-data/Parametrize.ts';
 
 // Parse the JSON data into a JavaScript object
 //const parseData = JSON.parse(JSON.stringify(jsonData));
+let loginPage: LoginPage;
 
+test.beforeAll(' before all tests', async () => {
+    console.log("Before all tests");
+})
+
+test.afterAll(' after all tests', async () => {
+    console.log("After all tests");
+})
+
+test.afterEach(' after each test', async ({ }, testInfo) => {
+    console.log(`After each test : ${testInfo.title}`);
+})
+
+test.beforeEach(async ({ page }, testInfo) => {
+    console.log(`Before each test : ${testInfo.title}`);
+    loginPage = new LoginPage(page);
+    await loginPage.navigateToLoginPage();
+});
 test.describe('Login page', () => {
-    let loginPage: LoginPage;
-    test.beforeEach(async ({ page }) => {
-        loginPage = new LoginPage(page);
-        await loginPage.navigateToLoginPage();
-    });
 
     test('valid login', async ({ page }) => {
         await loginPage.login(tsData.username, tsData.password);

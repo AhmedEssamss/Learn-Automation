@@ -1,9 +1,7 @@
 import {  type Locator, type Page } from "@playwright/test";
 
 export class LoginPage {
-    alertText(alertText: any) {
-        throw new Error('Method not implemented.');
-    }
+   
     // locators
     readonly page: Page;
     readonly usernameInput: Locator;
