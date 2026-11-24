@@ -27,13 +27,22 @@ test.beforeEach(async ({ page }, testInfo) => {
 });
 test.describe('Login page', () => {
 
-    test('valid login', async ({ page }) => {
+    test('valid login ', {
+        tag :'@valid',
+         annotation: {
+    type: 'validation',
+    description: 'This test case validates the login functionality with valid credentials.',
+  },
+    },async ({ page }) => {
         await loginPage.login(tsData.username, tsData.password);
         await expect(loginPage.dashboardHeader).toBeVisible();
     });
 
-    paramData.forEach(({ username, password, type }) => {
-        test(`invalid login for ${type}`, async ({ page }) => {
+    paramData.forEach(({ username, password, 
+        type }) => {
+        test(`invalid login for ${type}`, {
+            tag : '@invalid'
+        },async ({ page }) => {
             await loginPage.login(username, password);
             await expect(loginPage.invalidloginmessage).toBeVisible();
         });

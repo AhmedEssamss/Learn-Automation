@@ -1,7 +1,7 @@
-import {  type Locator, type Page } from "@playwright/test";
+import { type Locator, type Page } from "@playwright/test";
 
 export class LoginPage {
-   
+
     // locators
     readonly page: Page;
     readonly usernameInput: Locator;
@@ -23,7 +23,7 @@ export class LoginPage {
     //methods
     async navigateToLoginPage() {
         await this.page.goto(this.Url);
-    }   
+    }
 
     async login(username: string, password: string) {
         await this.usernameInput.fill(username);

@@ -1,0 +1,4 @@
+Before all tests
+Before each test : valid login @valid
+After each test : valid login @valid
+After all tests
